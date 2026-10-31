@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# builds
+dist/
+*.tsbuildinfo
+
+# environment — never commit real secrets
+.env
+.env.*
+!.env.example
+
+# logs & OS
+*.log
+.DS_Store
+coverage/
+.vercel/

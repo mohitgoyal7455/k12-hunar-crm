@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #1d2a5b;        /* fountain-pen indigo: text, primary surfaces */
+  --color-ink-soft: #2b3a73;
+  --color-paper: #f7f8fc;      /* page background */
+  --color-line: #dfe3ee;       /* borders, dividers */
+  --color-slate: #5b6478;      /* secondary text */
+  --color-marigold: #e8a317;   /* the one primary action */
+  --color-marigold-deep: #c98a0a;
+  --color-leaf: #2f7d5b;       /* success */
+  --color-rose: #b8372f;       /* errors */
+
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-optical-sizing: auto;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-marigold);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility field-label {
+  @apply mb-1.5 block text-sm font-bold text-ink;
+}
+@utility field-input {
+  @apply block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-[15px] text-ink
+    placeholder:text-slate/60 transition-colors
+    hover:border-slate/50 focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/15
+    aria-[invalid=true]:border-rose aria-[invalid=true]:ring-rose/15;
+}
+@utility field-error {
+  @apply mt-1.5 text-sm text-rose;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-[15px] font-bold
+    transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-marigold text-ink hover:bg-marigold-deep;
+}
+@utility btn-ink {
+  @apply btn bg-ink text-white hover:bg-ink-soft;
+}
+@utility btn-ghost {
+  @apply btn border border-line bg-white text-ink hover:border-slate/50;
+}
+@utility btn-danger {
+  @apply btn border border-rose/30 bg-white text-rose hover:bg-rose/5;
+}
